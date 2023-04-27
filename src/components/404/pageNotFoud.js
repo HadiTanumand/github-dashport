@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { purple } from '@mui/material/colors';
+import Link from '@mui/material/Link';
 
 const primary = purple[500]; // #f44336
 
@@ -22,7 +23,7 @@ export default function Error() {
       <Typography variant="h6" style={{ color: 'white' }}>
         The page you’re looking for doesn’t exist.
       </Typography>
-      <Button variant="contained">Back Home</Button>
+      <Button variant="contained"><Link href="/" style={{ color: 'white' }}>Back Home</Link></Button>
     </Box>
   );
 }
