@@ -5,6 +5,7 @@ import Profile from './components/profile/profile';
 import Nav from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import Landing from './components/landing/landing';
+import Error from './components/404/pageNotFoud';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="*" element={<Error />} />
         </Routes>
       </Router>
       <Footer />

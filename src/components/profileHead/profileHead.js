@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
-import { supabase } from "./../../client";
 
 const ProfileHead = (props) => {
-  const [user, setUser] = useState({
-    avatar_url:'',
-    name:'',
-    email:'',
-
-  });
-
-  useEffect(() => {
-    checkUser();
-  }, []);
-
-  async function checkUser() {
-    const user = await supabase.auth.getUser();
-   const newUser = user.data.user.user_metadata;
-    setUser(newUser);
-  }
-
   return (
     <>
     <Box
@@ -36,7 +18,7 @@ const ProfileHead = (props) => {
   >
     <Container maxWidth="sm">
       <Avatar
-      src={user.avatar_url}
+      src={props.user.avatar_url}
         sx={{
           boxShadow: 6,
           m: 2,
@@ -52,7 +34,7 @@ const ProfileHead = (props) => {
         color="text.primary"
         gutterBottom
       >
-        {user.name}
+        {props.user.name}
       </Typography>
       <Typography
         variant="h5"
@@ -60,7 +42,7 @@ const ProfileHead = (props) => {
         color="text.secondary"
         paragraph
       >
-        {user.email}
+        {props.user.email}
       </Typography>
       <Typography
         variant="h5"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import Alert from '@mui/material/Alert';
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -14,6 +14,16 @@ export default function Album() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [user, setUser] = useState({
+    avatar_url:'',
+    name:'',
+    email:'',
+
+  });
+
+  useEffect(() => {
+      checkUser();
+  }, []);
 
   const history = useNavigate();
   const handleLogout = async () => {
@@ -21,6 +31,12 @@ export default function Album() {
     localStorage.removeItem("accessToken_Github");
     history("/");
   };
+
+  async function checkUser() {
+    const user = await supabase.auth.getUser();
+   const newUser = user.data.user.user_metadata;
+    setUser(newUser);
+  }
 
   async function getRepositories() {
     setLoading(true)
@@ -55,10 +71,11 @@ export default function Album() {
       }
       <main>    
         <ProfileHead
+        user={user}
         getRepositories={getRepositories}
          handleLogout={handleLogout} />
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
+        <Container sx={{ py: 8 }} maxWidth="md">       
+          <Grid container spacing={4}>           
             {repos.map((repo) => (
               <Repos
               name={repo.name}
@@ -68,7 +85,7 @@ export default function Album() {
               ownerurl={repo.owner.login}
               />
             ))}
-          </Grid>
+          </Grid>        
         </Container>
       </main>
       </>

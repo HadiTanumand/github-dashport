@@ -15,13 +15,17 @@ const Repos = (props) => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
+            boxShadow: 3 
           }}
         >
-          <CardContent sx={{ flexGrow: 1 }}>
-            <Typography gutterBottom variant="h5" component="h3">
+          <CardContent sx={{ flexGrow: 1  }}>
+            <Typography gutterBottom variant="h5" component="h6" sx={{ fontSize: 16}}>
+              Repo Detail:
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h6" sx={{ fontSize: 22 , color: 'success.main'}}>
               {props.name}
             </Typography>
-            <Typography>visibility {props.visibility}</Typography>
+            <Typography sx={{ color: 'warning.main' }}>{props.visibility}</Typography>
           </CardContent>
           <CardActions>
             <Link

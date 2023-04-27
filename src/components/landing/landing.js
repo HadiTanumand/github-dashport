@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import { supabase } from "./../../client";
-import SignIn from "../signup/signup";
+import SignUp from "../signup/signup";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 
@@ -16,7 +16,7 @@ const Landing = () => {
            history("/profile");
            
         });
-  }, []);
+  }, [history ]);
 
   async function checkUser() {
     await supabase.auth.getUser();
@@ -35,7 +35,7 @@ const Landing = () => {
           <LinearProgress color="success" />
         </Box>
       ) : ""}
-      <SignIn setLoading={setLoading} />
+      <SignUp setLoading={setLoading} />
     </>
   );
 };
