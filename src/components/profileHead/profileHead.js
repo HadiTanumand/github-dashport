@@ -21,7 +21,6 @@ const ProfileHead = (props) => {
 
   async function checkUser() {
     const user = await supabase.auth.getUser();
-   console.log(user.data.user.user_metadata);
    const newUser = user.data.user.user_metadata;
     setUser(newUser);
   }

@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 
 const Landing = () => {
   const history = useNavigate();
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     checkUser();
@@ -20,9 +19,7 @@ const Landing = () => {
   }, []);
 
   async function checkUser() {
-    const user = await supabase.auth.getUser();
-    // console.log(user.data.user.user_metadata.user_name);
-    setUser(user);
+    await supabase.auth.getUser();
     const Data = await supabase.auth.getSession();
     const accessToken = Data.data.session.provider_token;
     console.log(Data.data.session.provider_token);
