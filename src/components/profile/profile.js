@@ -12,13 +12,14 @@ import axios from "axios";
 
 export default function Album() {
   const [repos, setRepos] = useState([]);
+  const [arrayHolder, setArrayHolder] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [searchBar, setSearchBar] = useState('');
   const [user, setUser] = useState({
     avatar_url:'',
     name:'',
     email:'',
-
   });
 
   useEffect(() => {
@@ -37,6 +38,16 @@ export default function Album() {
    const newUser = user.data.user.user_metadata;
     setUser(newUser);
   }
+  const searchFilterFunction =(event)=>{
+    const itemData = arrayHolder.filter((item)=>{
+      const itemData = item.name.toUpperCase();
+      const textData = event.target.value.toUpperCase();
+      return itemData.indexOf(textData)>-1
+      
+    })
+    setRepos(itemData);
+    setSearchBar(event.target.value)
+  }
 
   async function getRepositories() {
     setLoading(true)
@@ -50,7 +61,8 @@ export default function Album() {
       })
       .then((e) => {
         setRepos(e.data);
-        setLoading(false)
+        setArrayHolder(e.data);
+        setLoading(false);
       })
       .catch((r) =>{
         setError(true);
@@ -71,6 +83,8 @@ export default function Album() {
       }
       <main>    
         <ProfileHead
+        searchFilterFunction={searchFilterFunction}
+        searchBar={searchBar}
         user={user}
         getRepositories={getRepositories}
          handleLogout={handleLogout} />

@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
+import TextField from '@mui/material/TextField';
 
 const ProfileHead = (props) => {
   return (
@@ -64,7 +65,9 @@ const ProfileHead = (props) => {
         <Button variant="contained" onClick={props.getRepositories}>
           Get Repositories
         </Button>
+        
       </Stack>
+      <TextField fullWidth label="search in repositories" value={props.searchBar} onChange={props.searchFilterFunction} id="fullWidth" sx={{ mt : 4}} />
     </Container>
   </Box>
     </>

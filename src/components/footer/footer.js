@@ -25,7 +25,7 @@ export default function Footer() {
           color="text.secondary"
           component="p"
         >
-          If You like This App, Please Fallow Me in Github This is My Page
+          If You Like This App, Please Fallow Me in Github
         </Typography>
         <Copyright />
       </Box>
